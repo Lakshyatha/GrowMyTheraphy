@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'PrintedMoments';
+  src: url('/printedmoments-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   DR. MAYA REYNOLDS — Distinct warm therapy palette
+   Palette direction: warm ivory + muted sage + pine + clay terracotta
+   This keeps the reference layout intact while creating a clearly different
+   identity for Dr. Maya Reynolds.
+──────────────────────────────────────────────────────────────────────── */
+:root, [data-theme="maya"] {
+
+  /* ── Core design tokens ────────────────────────────────────────────── */
+  --color-primary:    #2f4d48;   /* Deep pine green — primary actions, headings */
+  --color-secondary:  #a5b8a7;   /* Dusty sage — supporting accents */
+  --color-accent:     #c97d63;   /* Muted clay terracotta — warmth, emphasis */
+  --color-background: #f7f1ea;   /* Warm ivory background */
+  --color-surface:    #ecdfd0;   /* Soft sandstone surface */
+  --color-text:       #21342f;   /* Deep forest ink */
+  --color-muted:      #5f726b;   /* Muted moss grey */
+  --color-border:     rgba(33, 52, 47, 0.12);
+
+  /* ── Legacy alias layer — keeps current app structure stable ─────── */
+  --bg-page:          var(--color-background);
+  --bg-white:         #ffffff;
+  --bg-warm:          var(--color-surface);
+  --bg-dark:          #2d4b47;
+  --bg-dark-overlay:  rgba(29, 46, 43, 0.58);
+
+  --text-heading:     var(--color-text);
+  --text-body:        #38514d;
+  --text-muted:       var(--color-muted);
+  --text-light:       #f9f3ee;
+
+  --accent-primary:   var(--color-accent);
+  --accent-secondary: var(--color-secondary);
+  --accent-sand:      #e7d7c4;
+
+  --border-subtle:    var(--color-border);
+  --btn-bg:           var(--color-primary);
+  --btn-text:         #f9f3ee;
+  --btn-hover:        #243e3b;
+  --check-color:      var(--color-secondary);
+  --accent-tag-bg:    rgba(201, 125, 99, 0.08);
+  --card-shadow:      0 4px 20px -2px rgba(33, 52, 47, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  color: var(--text-body);
+  background-color: var(--bg-page);
+  font-family: 'Mulish', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', 'beaufort-pro', Georgia, serif;
+  font-weight: 300;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Handwritten Script Accent */
+.script-accent {
+  font-family: 'PrintedMoments', 'Caveat', cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: var(--accent-primary) !important;
+  font-size: 1.14em;
+  line-height: 0.8;
+  letter-spacing: 0;
+  display: inline-block;
+  padding: 0 0.1em;
+  transform: translateY(0.02em);
+  vertical-align: baseline;
+}
+
+/* Eyebrow / Label */
+.eyebrow-text {
+  font-family: 'Mulish', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Primary Button with Squarespace-inspired sweep effect */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.95rem 2.2rem;
+  font-family: 'Mulish', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.35s ease;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.12);
+}
+
+/* Secondary Button (Outline) */
+.btn-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2rem;
+  font-family: 'Mulish', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--text-heading);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Light Button on Dark Banner */
+.btn-light-banner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.95rem 2.2rem;
+  font-family: 'Mulish', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background-color: var(--bg-page);
+  color: var(--text-heading);
+  border-radius: 4px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-light-banner:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Text Action Link with Hover Arrow */
+.text-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.text-action-link svg {
+  transition: transform 0.25s ease;
+}
+
+.text-action-link:hover {
+  color: var(--accent-primary);
+}
+
+.text-action-link:hover svg {
+  transform: translateX(5px);
+}
+
+/* Checklist Styling */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-heading);
+  transition: padding-left 0.2s ease, color 0.2s ease;
+}
+
+.check-item:hover {
+  padding-left: 0.4rem;
+  color: var(--accent-primary);
+}
+
+.check-item-icon {
+  color: var(--check-color);
+  font-weight: bold;
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Subtle image zoom on hover */
+.img-hover-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.img-hover-container img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-hover-container:hover img {
+  transform: scale(1.035);
+}
+
+/* Modal Overlay & Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 34, 40, 0.78);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modal-content {
+  background-color: var(--bg-page);
+  border-radius: 8px;
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: slideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
