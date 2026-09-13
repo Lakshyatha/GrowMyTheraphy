@@ -39,7 +39,7 @@ export function App() {
             className="flex flex-col leading-none group"
             aria-label={`${data.brandName} homepage`}
           >
-            <span className="font-serif text-[1.75rem] font-light tracking-tight text-[var(--text-heading)] transition-colors group-hover:text-[var(--accent-primary)]">
+            <span className="font-serif text-[2.25rem] font-light tracking-tight text-[var(--text-heading)] transition-colors group-hover:text-[var(--accent-primary)]">
               Dr. Maya Reynolds
             </span>
             <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-primary)]">
@@ -169,11 +169,12 @@ export function App() {
                 {data.hero.description}
               </p>
               <div className="mt-8 flex flex-col items-start gap-3">
-                <button onClick={() => setIsBookingOpen(true)} className="btn-primary">
-                  <span>{data.hero.ctaText}</span>
-                  <ArrowRight size={16} />
+                <button
+                  onClick={() => setIsBookingOpen(true)}
+                  className="text-action-link border-0 bg-transparent p-0 !underline underline-offset-4"
+                >
+                  {data.hero.ctaText}
                 </button>
-                <a href="#services" className="btn-outline">Explore Services</a>
               </div>
             </div>
 
@@ -223,11 +224,12 @@ export function App() {
                   {data.hero.description}
                 </p>
                 <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                  <button onClick={() => setIsBookingOpen(true)} className="btn-primary">
-                    <span>{data.hero.ctaText}</span>
-                    <ArrowRight size={16} />
+                  <button
+                    onClick={() => setIsBookingOpen(true)}
+                    className="text-action-link border-0 bg-transparent p-0 !underline underline-offset-4"
+                  >
+                    {data.hero.ctaText}
                   </button>
-                  <a href="#services" className="btn-outline">Explore Services</a>
                 </div>
               </div>
             </div>
@@ -253,7 +255,6 @@ export function App() {
           <div className="mx-auto w-full max-w-none px-[clamp(1.5rem,5vw,6rem)] lg:pr-0">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               <div className="lg:col-span-7 space-y-6">
-                <span className="eyebrow-text">A Thoughtful Path Forward</span>
                 <h2 id="intro-heading" className="text-3xl sm:text-4xl md:text-5xl font-light leading-snug">
                   {data.intro.title}
                 </h2>
@@ -262,10 +263,30 @@ export function App() {
                   {data.intro.leadBold}
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-                  <p>{data.intro.col1}</p>
-                  <p>{data.intro.col2}</p>
+                {/* col1 */}
+                <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                  {data.intro.col1}
+                </p>
+
+                {/* Mobile-only: image between col1 and col2 */}
+                <div className="lg:hidden rounded-sm overflow-hidden border border-[var(--border-subtle)] shadow-lg aspect-[16/9]">
+                  <img
+                    src={data.intro.image}
+                    alt={data.intro.imageAlt}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center center' }}
+                  />
                 </div>
+
+                {/* col2 */}
+                <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                  {data.intro.col2}
+                </p>
+
+                {/* col3 */}
+                <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                  {data.intro.col3}
+                </p>
 
                 <div className="pt-4">
                   <a href="#about" className="text-action-link">
@@ -275,8 +296,9 @@ export function App() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5">
-                <div className="img-hover-container ml-auto aspect-[16/9] w-full max-h-[300px] rounded-sm border border-[var(--border-subtle)] bg-stone-200 shadow-lg lg:aspect-[4/5] lg:max-h-none lg:w-[clamp(280px,30vw,420px)]">
+              {/* Desktop-only image on right */}
+              <div className="hidden lg:block lg:col-span-5">
+                <div className="img-hover-container ml-auto aspect-[4/5] w-full border border-[var(--border-subtle)] bg-stone-200 shadow-lg lg:w-[clamp(280px,30vw,420px)]">
                   <img
                     src={data.intro.image}
                     alt={data.intro.imageAlt}
@@ -288,6 +310,7 @@ export function App() {
             </div>
           </div>
         </section>
+
 
         {/* ── SECTION 2: SERVICES ("Who I Help") ── */}
         <section
@@ -396,9 +419,6 @@ export function App() {
                 <p className="mt-6 text-base leading-relaxed text-[var(--text-muted)]">
                   Evidence-based psychological treatment integrating cognitive, somatic, and relational approaches tailored to your goals.
                 </p>
-                <button onClick={() => setIsBookingOpen(true)} className="btn-outline mt-8">
-                  Discuss Your Needs
-                </button>
               </div>
 
               <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
@@ -417,8 +437,8 @@ export function App() {
                     </ul>
                   </div>
                 ))}
-              </div>
             </div>
+          </div>
           </div>
         </section>
 
@@ -479,7 +499,6 @@ export function App() {
         >
           <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 px-[clamp(1.5rem,5vw,6rem)] lg:grid-cols-[minmax(240px,0.72fr)_minmax(0,1.28fr)] lg:gap-20">
             <div className="max-w-sm">
-              <span className="eyebrow-text">Clinical Specialties</span>
               <h2 id="specialties-heading" className="text-4xl font-light leading-tight sm:text-5xl">
                 {data.specialties.headingLead}{' '}
                 <span className="script-accent">{data.specialties.headingAccent}</span>{' '}
@@ -492,13 +511,16 @@ export function App() {
 
             <div className="grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2">
               {data.specialties.cards.map((specialty) => (
-                <article key={specialty.title} className="flex min-h-[180px] flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-light text-[var(--text-heading)]">{specialty.title}</h3>
-                    <p className="mt-4 max-w-md text-sm font-light leading-relaxed text-[var(--text-muted)]">
-                      {specialty.description}
+                <article key={specialty.title} className="flex flex-col gap-3 border-t border-[var(--border-subtle)] pt-6">
+                  <h3 className="text-2xl font-light text-[var(--text-heading)]">{specialty.title}</h3>
+                  <p className="text-sm font-light leading-relaxed text-[var(--text-muted)]">
+                    {specialty.description}
+                  </p>
+                  {specialty.approach && (
+                    <p className="text-[10px] uppercase tracking-widest text-[var(--accent-primary)] font-semibold mt-1">
+                      {specialty.approach}
                     </p>
-                  </div>
+                  )}
                 </article>
               ))}
             </div>
@@ -509,7 +531,7 @@ export function App() {
         {data.officeSection && (
           <section
             id="office"
-            className="overflow-hidden bg-[var(--bg-page)] py-16 md:py-24"
+            className="overflow-hidden bg-[var(--bg-page)] pt-16 pb-10 md:pt-20 md:pb-12"
             aria-labelledby="office-heading"
           >
 
@@ -587,7 +609,7 @@ export function App() {
         {/* ── SECTION 9: SCHEDULE A CONSULTATION ── */}
         <section
           id="contact"
-          className="bg-[var(--bg-page)] py-20 md:py-28"
+          className="bg-[var(--bg-page)] pt-14 pb-20 md:pt-16 md:pb-24"
           aria-labelledby="schedule-heading"
         >
           <div className="mx-auto max-w-3xl px-6 text-center space-y-6 lg:px-12">
@@ -634,14 +656,6 @@ export function App() {
               <p className="text-sm text-[var(--text-muted)] font-light leading-relaxed">
                 {data.footer.intro}
               </p>
-              <div className="pt-2">
-                <button
-                  onClick={() => setIsBookingOpen(true)}
-                  className="btn-outline text-xs !py-2 !px-4"
-                >
-                  Get in Touch
-                </button>
-              </div>
             </div>
 
             {/* Col 2: Navigate */}
@@ -686,14 +700,17 @@ export function App() {
             </div>
           </div>
 
+          <div className="flex justify-end py-5">
+            <a href="#top" className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors">
+              Back to top ↑
+            </a>
+          </div>
+
           {/* ── SECTION 12: LEGAL BOTTOM BAR ── */}
         </div>
         <div className="mt-8 w-full bg-[var(--bg-dark)] px-[clamp(1.5rem,5vw,6rem)] py-5">
-          <div className="flex w-full flex-col items-center justify-between gap-4 text-xs text-[var(--text-light)] sm:flex-row">
+          <div className="flex w-full items-center text-xs text-[var(--text-light)]">
             <p>{data.footer.legal}</p>
-            <div className="flex items-center gap-4">
-              <a href="#top" className="hover:text-[var(--accent-primary)] transition-colors">Back to top ↑</a>
-            </div>
           </div>
         </div>
       </footer>

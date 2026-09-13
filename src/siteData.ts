@@ -17,6 +17,7 @@ export interface ServiceItem {
 export interface SpecialtyCard {
   title: string;
   description: string;
+  approach?: string;
   href: string;
 }
 
@@ -64,7 +65,8 @@ export const mayaData = {
     title: 'You\u2019re holding onto hope that life can feel calmer, lighter, and more grounded than it is right now.',
     leadBold: 'In my practice, I help you transform that hope into lasting relief and sustainable well-being.',
     col1: 'Whether you\u2019re an adult seeking personal growth, looking to process trauma safely, or trying to manage intense professional burnout, therapy provides a compassionate and confidential space to unpack what feels overwhelming.',
-    col2: 'What you are experiencing is real, valid, and worthy of care. I help high-achieving individuals reconnect with themselves, release chronic tension, and build a resilient foundation for the future — in person and via telehealth across California.',
+    col2: 'What you are experiencing is real, valid, and worthy of care. I help high-achieving individuals reconnect with themselves, release chronic tension, and build a resilient foundation for the future \u2014 in person and via telehealth across California.',
+    col3: 'My work integrates evidence-based approaches \u2014 including EMDR, CBT, and somatic practices \u2014 adapted to your unique nervous system and life circumstances. Therapy with me is collaborative, honest, and unhurried.',
     image: '/images/maya/intro-forest-path.jpg',
     imageAlt: 'Sunlit forest path symbolizing a journey toward clarity and healing',
   },
@@ -137,10 +139,10 @@ export const mayaData = {
     headingAccent: 'specialties',
     headingSuffix: 'include\u2026',
     cards: [
-      { title: 'Trauma & PTSD', description: 'In therapy, I gently help you process traumatic memories, restore a sense of physical safety, and reclaim your autonomy, peace, and confidence.', href: '#contact' },
-      { title: 'Anxiety & Panic', description: 'I work at the roots of persistent worry to help your nervous system shift from chronic high alert toward lasting calm, clarity, and ease.', href: '#contact' },
-      { title: 'EMDR Therapy', description: 'EMDR is an evidence-based method that reworks how distressing memories are stored in the body — reducing their emotional charge and supporting lasting relief.', href: '#contact' },
-      { title: 'Burnout & High Pressure', description: 'Tailored support for those whose identity has become inseparable from their productivity — helping you separate self-worth from output and restore genuine vitality.', href: '#contact' },
+      { title: 'Trauma \u0026 PTSD', description: 'In therapy, I gently help you process traumatic memories, restore a sense of physical safety, and reclaim your autonomy, peace, and confidence.', approach: 'EMDR \u00b7 Somatic Therapy \u00b7 Trauma-Focused CBT', href: '#contact' },
+      { title: 'Anxiety \u0026 Panic', description: 'I work at the roots of persistent worry to help your nervous system shift from chronic high alert toward lasting calm, clarity, and ease.', approach: 'CBT \u00b7 Mindfulness \u00b7 Nervous System Regulation', href: '#contact' },
+      { title: 'EMDR Therapy', description: 'EMDR is an evidence-based method that reworks how distressing memories are stored in the body \u2014 reducing their emotional charge and supporting lasting relief.', approach: 'Bilateral Stimulation \u00b7 Adaptive Processing \u00b7 EMDR Protocol', href: '#contact' },
+      { title: 'Burnout \u0026 High Pressure', description: 'Tailored support for those whose identity has become inseparable from their productivity \u2014 helping you separate self-worth from output and restore genuine vitality.', approach: 'ACT \u00b7 Values Clarification \u00b7 Boundary Work', href: '#contact' },
     ] as SpecialtyCard[],
   },
   officeSection: {

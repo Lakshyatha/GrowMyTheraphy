@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ChevronDown } from 'lucide-react';
 import { mayaData } from '../../src/siteData';
+import { BookingModal } from '../../src/components/BookingModal';
 
 export default function FaqsPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-body)]">
@@ -13,18 +15,30 @@ export default function FaqsPage() {
         <div className="mx-auto flex h-24 w-full max-w-[1440px] items-center justify-between px-[clamp(1.5rem,5vw,6rem)]">
           <a href="/" className="flex flex-col text-decoration-none" aria-label="Dr. Maya Reynolds homepage">
             <span className="font-serif text-2xl font-light text-[var(--text-heading)] sm:text-3xl">Dr. Maya Reynolds</span>
-            <span className="eyebrow-text mt-0.5 text-[8px] tracking-[0.16em]">Licensed Clinical Psychologist</span>
+            <span className="eyebrow-text mt-0.5 text-[8px] tracking-[0.16em] !text-[var(--accent-primary)]">Licensed Clinical Psychologist</span>
           </a>
 
-          <nav className="hidden items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.14em] xl:flex" aria-label="Main Navigation">
-            <a href="/#about" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">About</a>
-            <a href="/#services" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Services</a>
-            <a href="/#expertise" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Specialties</a>
-            <a href="/#office" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Office</a>
-            <a href="/faqs" className="text-[var(--accent-primary)]">FAQs</a>
-            <a href="/#contact" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Contact</a>
-            <a href="/#contact" className="btn-primary ml-1 !px-4 !py-2.5 text-[10px]">Book a Consultation</a>
-          </nav>
+          <div className="flex items-center gap-5">
+            <nav className="hidden items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.14em] xl:flex" aria-label="Main Navigation">
+              <a href="/#about" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">About</a>
+              <a href="/#services" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Services</a>
+              <a href="/#expertise" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Specialties</a>
+              <a href="/#office" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Office</a>
+              <a href="/faqs" className="text-[var(--accent-primary)]">FAQs</a>
+              <a href="/#contact" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Contact</a>
+              <button
+                onClick={() => setIsBookingOpen(true)}
+                className="btn-primary ml-1 !px-4 !py-2.5 text-[10px]"
+              >
+                Book a Consultation
+              </button>
+            </nav>
+
+            <a href="/" className="text-action-link gap-2 text-xs" aria-label="Go back to home page">
+              <ArrowLeft size={14} />
+              Home
+            </a>
+          </div>
         </div>
       </header>
 
@@ -36,10 +50,6 @@ export default function FaqsPage() {
             <p className="mt-6 text-base leading-relaxed text-[var(--text-muted)]">
               Everything you need to know about getting started, scheduling, and session structure.
             </p>
-            <a href="/#contact" className="text-action-link mt-8">
-              <span>Contact Dr. Reynolds</span>
-              <ArrowRight size={14} />
-            </a>
           </div>
 
           <div>
@@ -66,6 +76,13 @@ export default function FaqsPage() {
           </div>
         </div>
       </main>
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        therapistName={mayaData.brandName}
+        address={`${mayaData.address.city}, ${mayaData.address.state}`}
+      />
     </div>
   );
 }
