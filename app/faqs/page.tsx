@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { mayaData } from '../../src/siteData';
 import { BookingModal } from '../../src/components/BookingModal';
 
@@ -12,37 +12,41 @@ export default function FaqsPage() {
   return (
     <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-body)]">
       <header className="relative z-40 bg-[var(--bg-page)]">
-        <div className="mx-auto flex h-24 w-full max-w-[1440px] items-center justify-between px-[clamp(1.5rem,5vw,6rem)]">
-          <a href="/" className="flex flex-col text-decoration-none" aria-label="Dr. Maya Reynolds homepage">
-            <span className="font-serif text-2xl font-light text-[var(--text-heading)] sm:text-3xl">Dr. Maya Reynolds</span>
-            <span className="eyebrow-text mt-0.5 text-[8px] tracking-[0.16em] !text-[var(--accent-primary)]">Licensed Clinical Psychologist</span>
+        <div className="flex h-28 w-full items-center justify-between px-8 lg:px-16">
+
+          {/* Brand Wordmark */}
+          <a href="/" className="flex flex-col leading-none group" aria-label="Dr. Maya Reynolds homepage">
+            <span className="font-serif text-[2.25rem] font-light tracking-tight text-[var(--text-heading)] transition-colors group-hover:text-[var(--accent-primary)]">
+              Dr. Maya Reynolds
+            </span>
+            <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-primary)]">
+              Licensed Clinical Psychologist
+            </span>
           </a>
 
-          <div className="flex items-center gap-5">
-            <nav className="hidden items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.14em] xl:flex" aria-label="Main Navigation">
-              <a href="/#about" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">About</a>
-              <a href="/#services" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Services</a>
-              <a href="/#expertise" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Specialties</a>
-              <a href="/#office" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Office</a>
-              <a href="/faqs" className="text-[var(--accent-primary)]">FAQs</a>
-              <a href="/#contact" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Contact</a>
-              <button
-                onClick={() => setIsBookingOpen(true)}
-                className="btn-primary ml-1 !px-4 !py-2.5 text-[10px]"
-              >
-                Book a Consultation
-              </button>
-            </nav>
+          {/* Desktop Nav */}
+          <nav className="hidden xl:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.13em]" aria-label="Main Navigation">
+            <a href="/#about" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">About</a>
+            <a href="/#services" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Modalities</a>
+            <a href="/#expertise" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Specialties</a>
+            <a href="/#office" className="text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)]">Office</a>
+            <a href="/faqs" className="text-[var(--accent-primary)]">FAQs</a>
+            <button
+              onClick={() => setIsBookingOpen(true)}
+              className="rounded-full border border-[var(--text-heading)] px-6 py-2.5 text-[11px] uppercase tracking-[0.13em] text-[var(--text-heading)] transition-colors hover:bg-[var(--text-heading)] hover:text-[var(--bg-page)]"
+            >
+              Book a Consultation
+            </button>
+          </nav>
 
-            <a href="/" className="text-action-link gap-2 text-xs" aria-label="Go back to home page">
-              <ArrowLeft size={14} />
-              Home
-            </a>
-          </div>
+          {/* Mobile: back link only */}
+          <a href="/" className="xl:hidden text-[11px] uppercase tracking-[0.13em] font-semibold text-[var(--text-heading)] hover:text-[var(--accent-primary)] transition-colors">
+            ← Back
+          </a>
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-[1440px] px-[clamp(1.5rem,5vw,6rem)] py-16 md:py-24">
+      <main className="mx-auto w-full max-w-[1440px] px-8 py-16 lg:px-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)] lg:gap-24">
           <div className="max-w-sm">
             <span className="eyebrow-text">Clarifying Details</span>
@@ -56,7 +60,7 @@ export default function FaqsPage() {
             {mayaData.faqs.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
-                <div key={faq.question}>
+                <div key={faq.question} className="border-b border-[var(--border-subtle)]">
                   <button
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
                     className="flex w-full items-center justify-between gap-6 py-5 text-left text-base font-normal text-[var(--text-heading)] transition-colors hover:text-[var(--accent-primary)] sm:text-lg"
@@ -66,7 +70,7 @@ export default function FaqsPage() {
                     <ChevronDown size={18} className={`flex-shrink-0 text-[var(--accent-primary)] transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                   </button>
                   {isOpen && (
-                    <div className="max-w-2xl pb-5 pr-10 text-sm font-light leading-relaxed text-[var(--text-muted)] animate-fadeIn">
+                    <div className="max-w-2xl pb-6 pr-10 text-sm font-light leading-relaxed text-[var(--text-muted)] animate-fadeIn">
                       <p>{faq.answer}</p>
                     </div>
                   )}

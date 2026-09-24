@@ -42,8 +42,25 @@ export const mayaData = {
   servingAreas: 'Serving Santa Monica, Venice, Brentwood, Pacific Palisades & all California',
   navItems: [
     { label: 'About', href: '#about' },
-    { label: 'Modalities', href: '#services' },
-    { label: 'Specialties', href: '#expertise' },
+    {
+      label: 'Modalities',
+      href: '#services',
+      dropdown: [
+        { label: 'Trauma & EMDR', href: '#services' },
+        { label: 'Anxiety & Panic', href: '#services' },
+        { label: 'Burnout & Pressure', href: '#services' },
+      ],
+    },
+    {
+      label: 'Specialties',
+      href: '#specialties',
+      dropdown: [
+        { label: 'Trauma & PTSD', href: '#specialties' },
+        { label: 'Anxiety & Panic Disorders', href: '#specialties' },
+        { label: 'EMDR Therapy', href: '#specialties' },
+        { label: 'Burnout & High Pressure', href: '#specialties' },
+      ],
+    },
     { label: 'Office', href: '#office' },
     { label: 'FAQs', href: '/faqs' },
   ] as NavItem[],
@@ -55,7 +72,7 @@ export const mayaData = {
     description: 'Grounded, collaborative therapy for adults navigating anxiety, trauma, burnout, and the pressure to keep going.',
     ctaText: 'Schedule a Consultation',
     ctaHref: '#contact',
-    mainImage: '/images/download.jpg',
+    mainImage: '/images/download-top-crop.jpg',
     mainImageAlt: 'Warm therapy conversation with a client and clinician',
     peekImage: '/images/bookshelf.jpg',
     peekImageAlt: 'A hand selecting a book from a softly lit bookshelf',
@@ -79,8 +96,8 @@ export const mayaData = {
         title: 'Trauma & EMDR',
         subtitle: 'Paced, Body-Grounded Processing',
         description: 'Carefully paced work for single-incident trauma, childhood emotional wounds, or relationship distress. Using EMDR and body-oriented therapies, I help you feel more secure in the present.',
-        image: '/images/maya/4c1fff581f6c3d5e43cd495aee721156.jpg',
-        alt: 'Therapist speaking with a client in a calm counseling room',
+        image: '/images/maya/therapy-session-chairs.jpg',
+        alt: 'Therapist and client in an engaged therapy conversation in a calm office',
         linkText: 'Explore EMDR & Trauma Therapy',
         href: '#contact',
       },
@@ -107,7 +124,7 @@ export const mayaData = {
   banner: {
     quote: 'You can be capable, accomplished, and still need support.',
     emphasis: 'There is no need to have everything figured out before you begin.',
-    backgroundImage: '/images/maya/banner-golden-sunset.jpg',
+    backgroundImage: '/images/maya/banner-therapy-hands.jpg',
   },
   expertise: {
     headingLead: 'Areas of',
@@ -179,7 +196,7 @@ export const mayaData = {
       'I take a warm, collaborative, and grounded approach. I take time to understand your unique life story rather than offering generic advice, and together we identify the patterns that keep you feeling stuck.',
       'Sessions integrate CBT, EMDR, mindfulness-based practices, and body-oriented techniques \u2014 designed to give you practical insights and regulation tools you can use in daily life.',
     ],
-    quote: 'Good therapy doesn\u2019t just solve problems \u2014 it changes the relationship you have with yourself.',
+    quote: 'It\'s time to feel lighter — not by pushing through harder, but by finally being seen, heard, and understood.',
   },
   faqs: [
     { question: 'Where is your office located, and do you offer in-person sessions?', answer: 'I offer in-person therapy in Santa Monica and secure telehealth sessions for clients anywhere in California.' },
@@ -199,6 +216,6 @@ export const mayaData = {
     ],
     contactInfo: ['Santa Monica, California', 'In-person & telehealth across California'],
     practiceDetails: ['Dr. Maya Reynolds, PsyD', 'Licensed Clinical Psychologist', 'California License PSY30219', 'By appointment'],
-    legal: '\u00a9 2026 Dr. Maya Reynolds, PsyD. All rights reserved. | Santa Monica, CA',
+    legal: '\u00a9 2026 Dr. Maya Reynolds, PsyD. All rights reserved.',
   },
 };

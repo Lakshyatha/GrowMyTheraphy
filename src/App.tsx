@@ -3,10 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   ArrowRight,
-  ChevronDown,
   Menu,
   X,
-  MapPin,
 } from 'lucide-react';
 import { mayaData } from './siteData';
 import { BookingModal } from './components/BookingModal';
@@ -58,21 +56,20 @@ export function App() {
               >
                 <a
                   href={item.href}
-                  className="inline-flex items-center gap-1.5 text-[var(--text-heading)] hover:text-[var(--accent-primary)] transition-colors"
+                  className="inline-flex items-center text-[var(--text-heading)] hover:text-[var(--accent-primary)] transition-colors"
                 >
                   {item.label}
-                  {item.dropdown && <ChevronDown size={11} className="opacity-60 group-hover:rotate-180 transition-transform" />}
                 </a>
 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu — blends into page, no box */}
                 {item.dropdown && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 min-w-[240px] bg-[var(--bg-white)] shadow-xl rounded border border-[var(--border-subtle)] py-2 z-50 animate-fadeIn">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[180px] bg-[var(--bg-page)] py-3 z-50 animate-fadeIn">
                     {item.dropdown.map((sub) => (
                       <a
                         key={sub.label}
                         href={sub.href}
                         onClick={() => setActiveDropdown(null)}
-                        className="block px-4 py-2.5 text-[11px] text-[var(--text-heading)] hover:bg-[var(--bg-warm)] hover:text-[var(--accent-primary)] transition-colors normal-case tracking-normal font-normal"
+                        className="block py-2.5 px-2 text-center text-[10px] uppercase tracking-[0.16em] font-semibold text-[var(--text-heading)] hover:text-[var(--accent-primary)] transition-colors normal-case"
                       >
                         {sub.label}
                       </a>
@@ -156,30 +153,33 @@ export function App() {
         >
 
           {/* ── MOBILE HERO (hidden on lg+) ── */}
-          <div className="lg:hidden pt-8">
-            {/* Text content first */}
-            <div className="px-6 pb-8">
+          <div className="lg:hidden pt-14">
+            {/* Text content */}
+            <div className="px-6 pb-10">
               <p className="eyebrow-text tracking-[0.2em]">{data.hero.eyebrow}</p>
-              <h1 id="hero-heading" className="mt-6 text-4xl font-light leading-[1.08]">
+              <h1 id="hero-heading" className="mt-8 text-5xl font-light leading-[1.08]">
                 {data.hero.titleLead}{' '}
                 <span className="script-accent">{data.hero.titleAccent}</span>
                 {data.hero.titleSuffix}
               </h1>
-              <p className="mt-6 text-base font-light leading-relaxed text-[var(--text-muted)]">
+              <p className="mt-8 text-base font-light leading-relaxed text-[var(--text-muted)]">
                 {data.hero.description}
               </p>
-              <div className="mt-8 flex flex-col items-start gap-3">
+              <div className="mt-10">
                 <button
                   onClick={() => setIsBookingOpen(true)}
-                  className="text-action-link border-0 bg-transparent p-0 !underline underline-offset-4"
+                  className="group bg-transparent border-0 p-0 cursor-pointer text-left"
                 >
-                  {data.hero.ctaText}
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--text-heading)] group-hover:text-[var(--accent-primary)] transition-colors">
+                    {data.hero.ctaText}
+                  </span>
+                  <div className="mt-1 h-px w-full bg-[var(--text-heading)] group-hover:bg-[var(--accent-primary)] transition-colors" />
                 </button>
               </div>
             </div>
 
             {/* Two images side by side below text */}
-            <div className="flex w-full items-start gap-2 px-3 pb-2">
+            <div className="flex w-full items-start gap-2 px-3 pb-4">
               {/* Left: main image — taller portrait */}
               <div className="flex-[1.4] overflow-hidden rounded-sm" style={{ aspectRatio: '3/4' }}>
                 <img
@@ -201,6 +201,7 @@ export function App() {
             </div>
           </div>
 
+
           {/* ── DESKTOP HERO (hidden on mobile) ── */}
           <div className="hidden lg:grid w-full grid-cols-1 items-stretch pt-16 lg:grid-cols-[minmax(0,0.82fr)_minmax(420px,1.18fr)_minmax(0,0.32fr)]">
             <div className="aspect-[4/3] w-full overflow-hidden lg:w-[clamp(280px,36vw,560px)] lg:justify-self-start">
@@ -215,20 +216,23 @@ export function App() {
             <div className="flex items-center px-6 py-12 sm:px-12 lg:items-end lg:px-[clamp(2rem,5vw,5rem)] lg:py-12">
               <div className="mx-auto w-full max-w-2xl">
                 <p className="eyebrow-text tracking-[0.2em]">{data.hero.eyebrow}</p>
-                <h1 id="hero-heading" className="mt-8 text-5xl font-light leading-[1.08] md:text-[3.5rem] lg:text-6xl">
+                <h1 id="hero-heading" className="mt-8 text-5xl font-light leading-[1.08] md:text-[3.8rem] lg:text-[4.5rem]">
                   {data.hero.titleLead}{' '}
                   <span className="script-accent">{data.hero.titleAccent}</span>
                   {data.hero.titleSuffix}
                 </h1>
-                <p className="mt-8 max-w-xl text-base font-light leading-relaxed text-[var(--text-muted)] sm:text-lg">
+                <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-[var(--text-muted)] sm:text-xl">
                   {data.hero.description}
                 </p>
-                <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <div className="mt-12">
                   <button
                     onClick={() => setIsBookingOpen(true)}
-                    className="text-action-link border-0 bg-transparent p-0 !underline underline-offset-4"
+                    className="group bg-transparent border-0 p-0 cursor-pointer text-left"
                   >
-                    {data.hero.ctaText}
+                    <span className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--text-heading)] group-hover:text-[var(--accent-primary)] transition-colors">
+                      {data.hero.ctaText}
+                    </span>
+                    <div className="mt-1 h-px w-full bg-[var(--text-heading)] group-hover:bg-[var(--accent-primary)] transition-colors" />
                   </button>
                 </div>
               </div>
@@ -249,7 +253,7 @@ export function App() {
 
         {/* ── SECTION 1: NARRATIVE INTRO ── */}
         <section
-          className="pt-24 pb-16 md:pt-32 md:pb-24 bg-[var(--bg-page)]"
+          className="py-20 md:py-28 bg-[var(--bg-page)]"
           aria-labelledby="intro-heading"
         >
           <div className="mx-auto w-full max-w-none px-[clamp(1.5rem,5vw,6rem)] lg:pr-0">
@@ -315,51 +319,44 @@ export function App() {
         {/* ── SECTION 2: SERVICES ("Who I Help") ── */}
         <section
           id="services"
-          className="py-16 md:py-24 bg-[var(--bg-white)]"
+          className="py-20 md:py-28 bg-[var(--bg-white)]"
           aria-labelledby="services-heading"
         >
           <div className="mx-auto w-full max-w-[1440px] px-[clamp(1.5rem,5vw,6rem)]">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <h2 id="services-heading" className="text-4xl font-light leading-[1.05] md:text-5xl">
+
+            {/* Heading — left edge of container */}
+            <div className="mb-14 md:mb-20">
+              <h2 id="services-heading" className="text-5xl font-light leading-[1.1] md:text-6xl">
                 {data.servicesSection.headingLead}{' '}
                 <span className="script-accent">{data.servicesSection.headingAccent}</span>
               </h2>
-              <p className="text-base text-[var(--text-muted)] leading-relaxed font-light">
-                {data.servicesSection.subtitle}
-              </p>
             </div>
 
-            {/* 3 Core Services Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            {/* Image grid — indented right relative to heading */}
+            <div className="md:pl-[clamp(3rem,6vw,7rem)] grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
               {data.servicesSection.services.map((svc, idx) => (
                 <article
                   key={svc.title}
-                  className="group flex flex-col overflow-hidden"
+                  className="group flex flex-col"
                 >
-                  <div className="img-hover-container aspect-[4/3] bg-stone-200 overflow-hidden">
+                  {/* Portrait image — 4:5 ratio, matches reference */}
+                  <div className="overflow-hidden" style={{ aspectRatio: '4/5' }}>
                     <img
                       src={svc.image}
                       alt={svc.alt}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      style={{ objectPosition: idx === 1 ? 'center 30%' : idx === 2 ? 'center 20%' : 'center center' }}
+                      style={{ objectPosition: idx === 0 ? 'center 35%' : idx === 1 ? 'center 30%' : idx === 2 ? 'center 20%' : 'center center' }}
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col justify-between space-y-4 pt-6 sm:pt-8">
-                    <div className="space-y-2">
-                      <h3 className="text-2xl sm:text-3xl font-light text-[var(--text-heading)]">
-                        {svc.title}
-                      </h3>
-                      {svc.subtitle && (
-                        <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] font-medium">
-                          {svc.subtitle}
-                        </p>
-                      )}
-                      <p className="text-sm text-[var(--text-muted)] leading-relaxed font-light pt-1">
-                        {svc.description}
-                      </p>
-                    </div>
-
+                  {/* Text below */}
+                  <div className="pt-8 space-y-3">
+                    <h3 className="text-[1.35rem] font-light text-[var(--accent-primary)] leading-snug">
+                      {svc.title}
+                    </h3>
+                    <p className="text-base text-[var(--text-body)] leading-[1.8] font-light">
+                      {svc.description}
+                    </p>
                   </div>
                 </article>
               ))}
@@ -367,125 +364,134 @@ export function App() {
           </div>
         </section>
 
+
+
+
         {/* ── SECTION 3: FULL-BLEED INSPIRATIONAL BANNER ── */}
         <section
-          className="relative py-24 md:py-32 bg-[var(--bg-dark)] text-[var(--text-light)] overflow-hidden"
+          className="relative bg-[var(--bg-dark)] text-[var(--text-light)] overflow-hidden"
+          style={{ minHeight: '560px' }}
           aria-label="Inspirational statement"
         >
-          {/* Background Image with Dark Overlay */}
+          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img
               src={data.banner.backgroundImage}
-              alt="Calm atmospheric ocean horizon at sunset"
+              alt="Calm atmospheric scene"
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-[var(--bg-dark-overlay)] backdrop-blur-[1px]" />
+            {/* Gradient: stronger at bottom-left where text sits, clear at top */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,38,34,0.80) 0%, rgba(25,38,34,0.40) 45%, rgba(25,38,34,0.10) 100%)' }} />
           </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 text-center space-y-6">
-            <p className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
-              {data.banner.quote}
-            </p>
-            <p className="font-serif italic text-xl sm:text-2xl md:text-3xl text-amber-100/90 font-light">
-              {data.banner.emphasis}
-            </p>
-
-            <div className="pt-6">
-              <button
-                onClick={() => setIsBookingOpen(true)}
-                className="btn-light-banner"
-              >
-                <span>Schedule a Consultation</span>
-                <ArrowRight size={15} />
-              </button>
+          {/* Text — bottom-left, generous padding, spreads wide */}
+          <div className="relative z-10 flex items-end h-full" style={{ minHeight: '560px' }}>
+            <div className="px-[clamp(1.5rem,7vw,8rem)] py-16 md:py-24 max-w-[68%]">
+              <p className="font-serif text-2xl sm:text-3xl md:text-[2.6rem] font-light leading-snug text-white/95">
+                {data.banner.quote}{' '}
+                <em className="font-serif italic text-amber-100/90">{data.banner.emphasis}</em>
+              </p>
             </div>
           </div>
         </section>
+
+
 
         {/* ── SECTION 4: AREAS OF EXPERTISE ── */}
         <section
           id="expertise"
-          className="bg-[var(--bg-white)] py-16 md:py-24"
+          className="bg-[var(--bg-white)] py-20 md:py-28"
           aria-labelledby="expertise-heading"
         >
           <div className="mx-auto w-full max-w-[1440px] px-[clamp(1.5rem,5vw,6rem)]">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)] lg:gap-24">
-              <div className="max-w-sm">
-                <span className="eyebrow-text">Clinical Scope</span>
-                <h2 id="expertise-heading" className="mt-3 text-4xl font-light sm:text-5xl">
-                  {data.expertise.headingLead}{' '}
-                  <span className="script-accent">{data.expertise.headingAccent}</span>
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(220px,0.55fr)_minmax(0,1.45fr)] lg:gap-20">
+
+              {/* LEFT: Stacked heading only */}
+              <div>
+                <h2 id="expertise-heading" className="text-5xl font-light leading-tight sm:text-6xl">
+                  {data.expertise.headingLead}
                 </h2>
-                <p className="mt-6 text-base leading-relaxed text-[var(--text-muted)]">
-                  Evidence-based psychological treatment integrating cognitive, somatic, and relational approaches tailored to your goals.
-                </p>
+                <div className="script-accent text-5xl sm:text-6xl mt-1">{data.expertise.headingAccent}</div>
               </div>
 
-              <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
-                {data.expertise.groups.map((group) => (
-                  <div key={group.title}>
-                    <span className="eyebrow-text text-[var(--accent-primary)]">{group.title}</span>
-                    <ul className="mt-3 divide-y divide-[var(--border-subtle)]">
-                      {group.items.map((item) => (
-                        <li key={item}>
-                          <div className="flex gap-2 py-3 text-sm leading-snug text-[var(--text-heading)]">
-                            <span className="text-[var(--accent-secondary)] font-bold flex-shrink-0" aria-hidden="true">✓</span>
-                            <span>{item}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              {/* RIGHT: Flat 2-column list with dividers */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12">
+                {/* Column 1 — first half of all items */}
+                <ul>
+                  {data.expertise.groups.flatMap(g => g.items).filter((_, i, arr) => i < Math.ceil(arr.length / 2)).map((item) => (
+                    <li key={item} className="border-b border-[var(--border-subtle)]">
+                      <div className="py-4 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--text-heading)]">
+                        {item}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                {/* Column 2 — second half */}
+                <ul>
+                  {data.expertise.groups.flatMap(g => g.items).filter((_, i, arr) => i >= Math.ceil(arr.length / 2)).map((item) => (
+                    <li key={item} className="border-b border-[var(--border-subtle)]">
+                      <div className="py-4 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--text-heading)]">
+                        {item}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
             </div>
           </div>
-          </div>
         </section>
+
 
         {/* ── SECTION 5: MEET YOUR THERAPIST ── */}
         <section
           id="about"
-          className="py-16 md:py-24 bg-[var(--bg-page)]"
+          className="py-20 md:py-28 bg-[var(--bg-page)]"
           aria-labelledby="meet-therapist-heading"
         >
           <div className="mx-auto w-full max-w-[1440px] px-[clamp(1.5rem,5vw,6rem)]">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(280px,0.65fr)_minmax(0,1fr)] gap-12 lg:gap-20 items-start">
 
-              {/* Left: Bio text */}
-              <div className="lg:col-span-7 space-y-6">
-                <span className="eyebrow-text">{data.aboutBio.eyebrow}</span>
-                <h2 id="meet-therapist-heading" className="text-3xl sm:text-4xl md:text-5xl font-light">
+              {/* LEFT: Portrait with white frame */}
+              <div className="w-full max-w-[400px] mx-auto lg:mx-0 bg-white p-4 shadow-md">
+                <div className="overflow-hidden" style={{ aspectRatio: '3/4' }}>
+                  <img
+                    src="/images/Dr._Maya_Reynolds.png"
+                    alt={data.aboutBio.title}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center top' }}
+                  />
+                </div>
+              </div>
+
+              {/* RIGHT: Name → credentials → divider → statement → paragraphs */}
+              <div className="space-y-5 pt-0 lg:pt-8">
+
+                {/* Large name */}
+                <h2 id="meet-therapist-heading" className="text-5xl font-light leading-tight md:text-6xl text-[var(--text-heading)]">
                   {data.aboutBio.title}
                 </h2>
-                <p className="text-xs uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
+
+                {/* Credentials small caps */}
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)] font-semibold">
                   {data.aboutBio.credentials}
                 </p>
+
+                {/* Horizontal divider */}
+                <hr className="border-t border-[var(--border-subtle)]" />
+
+                {/* Large featured statement */}
+                <p className="text-3xl sm:text-4xl font-light leading-snug text-[var(--text-heading)]">
+                  {data.aboutBio.quote}
+                </p>
+
+                {/* Body paragraphs */}
                 <div className="space-y-4 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed font-light">
                   {data.aboutBio.paragraphs.map((p, idx) => (
                     <p key={idx}>{p}</p>
                   ))}
                 </div>
-                <p className="border-l-2 border-[var(--accent-primary)] pl-4 italic text-sm text-[var(--text-heading)] font-serif">
-                  {data.aboutBio.quote}
-                </p>
-                <div className="pt-2">
-                  <button onClick={() => setIsBookingOpen(true)} className="btn-primary">
-                    <span>Book a Consultation</span>
-                    <ArrowRight size={15} />
-                  </button>
-                </div>
-              </div>
 
-              {/* Right: Portrait — full image visible */}
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="img-hover-container w-full max-w-[380px] rounded-sm border border-[var(--border-subtle)] bg-white p-4 shadow-xl lg:max-w-[420px]">
-                  <img
-                    src="/images/Dr._Maya_Reynolds.png"
-                    alt={data.aboutBio.title}
-                    className="w-full object-contain"
-                    style={{ objectPosition: 'center top' }}
-                  />
-                </div>
               </div>
 
             </div>
@@ -494,12 +500,13 @@ export function App() {
 
         {/* ── SECTION 7: SPECIALTIES ── */}
         <section
-          className="bg-[var(--bg-white)] py-16 md:py-24"
+          id="specialties"
+          className="bg-[var(--bg-white)] py-20 md:py-28"
           aria-labelledby="specialties-heading"
         >
           <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-12 px-[clamp(1.5rem,5vw,6rem)] lg:grid-cols-[minmax(240px,0.72fr)_minmax(0,1.28fr)] lg:gap-20">
             <div className="max-w-sm">
-              <h2 id="specialties-heading" className="text-4xl font-light leading-tight sm:text-5xl">
+              <h2 id="specialties-heading" className="text-5xl font-light leading-tight sm:text-6xl">
                 {data.specialties.headingLead}{' '}
                 <span className="script-accent">{data.specialties.headingAccent}</span>{' '}
                 {data.specialties.headingSuffix}
@@ -511,13 +518,13 @@ export function App() {
 
             <div className="grid grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2">
               {data.specialties.cards.map((specialty) => (
-                <article key={specialty.title} className="flex flex-col gap-3 border-t border-[var(--border-subtle)] pt-6">
+                <article key={specialty.title} className="flex flex-col gap-4 border-t border-[var(--border-subtle)] pt-7">
                   <h3 className="text-2xl font-light text-[var(--text-heading)]">{specialty.title}</h3>
-                  <p className="text-sm font-light leading-relaxed text-[var(--text-muted)]">
+                  <p className="text-base font-light leading-relaxed text-[var(--text-muted)]">
                     {specialty.description}
                   </p>
                   {specialty.approach && (
-                    <p className="text-[10px] uppercase tracking-widest text-[var(--accent-primary)] font-semibold mt-1">
+                    <p className="text-[10px] uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
                       {specialty.approach}
                     </p>
                   )}
@@ -531,7 +538,7 @@ export function App() {
         {data.officeSection && (
           <section
             id="office"
-            className="overflow-hidden bg-[var(--bg-page)] pt-16 pb-10 md:pt-20 md:pb-12"
+            className="overflow-hidden bg-[var(--bg-page)] py-20 md:py-28"
             aria-labelledby="office-heading"
           >
 
@@ -609,7 +616,7 @@ export function App() {
         {/* ── SECTION 9: SCHEDULE A CONSULTATION ── */}
         <section
           id="contact"
-          className="bg-[var(--bg-page)] pt-14 pb-20 md:pt-16 md:pb-24"
+          className="bg-[var(--bg-page)] py-20 md:py-28"
           aria-labelledby="schedule-heading"
         >
           <div className="mx-auto max-w-3xl px-6 text-center space-y-6 lg:px-12">
@@ -625,7 +632,7 @@ export function App() {
             </p>
 
 
-            <div className="pt-2">
+            <div className="pt-6">
               <button
                 onClick={() => setIsBookingOpen(true)}
                 className="btn-primary"
